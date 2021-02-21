@@ -1,6 +1,6 @@
-import { ApolloLink, FieldPolicy, gql, InMemoryCache } from '@apollo/client';
+import { ApolloLink, FieldPolicy, InMemoryCache } from '@apollo/client';
 import { removeDirectivesFromDocument } from '@apollo/client/utilities';
-import { ListValueNode, print, StringValueNode, visit } from 'graphql';
+import { ListValueNode, StringValueNode, visit } from 'graphql';
 import get from 'lodash.get';
 
 const appliedPolicies: string[] = [];
@@ -19,10 +19,7 @@ export function createPaginationLink(cache: InMemoryCache, paginatePolicies: Rec
         }
 
         // Clean Query
-        const doc = removeDirectivesFromDocument([{ name: foundDirective }], query) ?? query;
-        const cleanedQuery = gql(print(doc));
-
-        operation.query = cleanedQuery;
+        operation.query = removeDirectivesFromDocument([{ name: foundDirective }], query) ?? query;
 
         // Check if the policies are already applied
         if (appliedPolicies.includes(foundDirective)) {
