@@ -1,3 +1,9 @@
-export { createPaginationLink } from './createPaginationLink';
-export { cursorPagination } from './presets/cursorPagination';
-export { offsetLimitPagination } from './presets/offsetLimitPagination';
+import { createPaginationLink } from "./createPaginationLink";
+import { cursorPagination } from "./presets/cursorPagination";
+import { offsetLimitPagination } from "./presets/offsetLimitPagination";
+
+export default {
+  createPaginationLink,
+  cursorPagination,
+  offsetLimitPagination,
+};

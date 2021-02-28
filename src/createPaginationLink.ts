@@ -21,14 +21,6 @@ export function createPaginationLink(cache: InMemoryCache, paginatePolicies: Rec
         // Clean Query
         operation.query = removeDirectivesFromDocument([{ name: foundDirective }], query) ?? query;
 
-        // Check if the policies are already applied
-        if (appliedPolicies.includes(foundDirective)) {
-          return;
-        }
-
-        appliedPolicies.push(foundDirective);
-
-        // Add Type Policies
         const field = get(query, path.join('.').replace(/\.directives\.0$/, ''));
 
         const typenameArg = node.arguments?.find((arg) => arg.name.value === 'typename');
@@ -37,6 +29,15 @@ export function createPaginationLink(cache: InMemoryCache, paginatePolicies: Rec
         const keyArgsArg = node.arguments?.find((arg) => arg.name.value === 'keyArgs');
         const keyArgs = (keyArgsArg?.value as ListValueNode)?.values.map((v) => (v as StringValueNode).value) ?? [];
 
+        // Check if the policies are already applied
+        const key = `${typename}-${field.name.value}`
+        if (appliedPolicies.includes(key)) {
+          return;
+        }
+
+        appliedPolicies.push(key);
+
+        // Add Type Policies
         cache.policies.addTypePolicies({
           [typename]: {
             fields: {

@@ -1,6 +1,6 @@
 {
   "name": "apollo-link-pagination",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "description": "A @pagination directive for GraphQL queries",
   "main": "./lib/index.js",
   "typings": "./lib/index.d.ts",
@@ -27,7 +27,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "prerelease": "npm run build",
+    "prepublish": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "peerDependencies": {

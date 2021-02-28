@@ -1,8 +1,8 @@
 {
   "include": ["./src"],
-  "compilerOptions":{
+  "compilerOptions": {
     "outDir": "./lib",
-    "target": "es5",
+    "target": "es2015",
     "module": "commonjs",
     "lib": ["es6", "esnext", "dom"],
     "declaration": true,
