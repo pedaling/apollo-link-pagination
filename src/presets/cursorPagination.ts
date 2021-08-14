@@ -11,9 +11,12 @@ export const cursorPagination = (idField: string = 'id'): FieldPolicy<any> => ({
         if (Array.isArray(value)) {
           const result = value.concat(srcValue);
 
-          return uniqBy(result, (item: Reference | StoreObject) => readField(idField, item));
+          return uniqBy(result, (item: Reference | StoreObject) =>
+            readField(idField, item)
+          );
         }
-      },
+        return undefined;
+      }
     );
   },
 });
