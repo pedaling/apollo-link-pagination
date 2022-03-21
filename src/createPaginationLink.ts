@@ -45,7 +45,7 @@ export function createPaginationLink(
         const keyArgs =
           (keyArgsArg?.value as ListValueNode)?.values.map(
             v => (v as StringValueNode).value
-          ) ?? [];
+          ) ?? false;
 
         // Check if the policies are already applied
         const key = `${typename}-${field.name.value}`;
